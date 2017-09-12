@@ -1,7 +1,5 @@
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 
 /**
  * 冒泡排序
@@ -29,31 +27,13 @@ public class BubbleSort<T extends Comparable<T>> implements AbstractSortAlgorith
         return list;
     }
 
-    private void swap(int i, int j, List<T> list) {
-        T t = list.get(i);
-        list.set(i, list.get(j));
-        list.set(j, t);
+    public static void main(String[] args) {
+        BubbleSort<Integer> bubbleSort = new BubbleSort<>();
+        bubbleSort.test(10, 100);
     }
 
-    public static void main(String[] args) {
-        Random random = new Random();
-        List<Integer> unsortedList = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            unsortedList.add(random.nextInt(50000));
-        }
-        List<Integer> origin = new ArrayList<>(unsortedList);
-        BubbleSort<Integer> bubbleSort = new BubbleSort<>();
-        Collection<Integer> sorted = bubbleSort.sort(unsortedList);
-        Integer previous = null;
-        for (Integer integer : sorted) {
-            if (previous == null) {
-                previous = integer;
-            }
-            if (previous.compareTo(integer) > 0) {
-                System.out.println("algorithm failure");
-                break;
-            }
-        }
-        sorted.forEach(System.out::println);
+    @Override
+    public AbstractSortAlgorithm<T> getAlgorithm() {
+        return new BubbleSort<>();
     }
 }
