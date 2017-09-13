@@ -31,16 +31,30 @@ public class InsertSort<T extends Comparable<T>> implements AbstractSortAlgorith
         return list;
     }
 
-    // TODO
+    // 二分法插入
     private void biSectionInsert(int endIndex, int currentIndex, List<T> list) {
+        int startIndex = 0;
+        T temp = list.get(currentIndex);
         int middleIndex = endIndex / 2;
-//        while ()
-        if (middleIndex - 1 != -1 && list.get(middleIndex - 1).compareTo(list.get(currentIndex)) < 0) {
+        while (middleIndex != endIndex) {
+            if (list.get(middleIndex).compareTo(temp) < 0) {
+                startIndex = middleIndex + 1;
+            } else {
+                endIndex = middleIndex - 1 < 0 ? 0 : middleIndex - 1;
+            }
+            middleIndex = (startIndex + endIndex) / 2;
         }
+        // 确认需要插入的数据是在Array[middleIndex]的左边或者右边
+        if (list.get(middleIndex).compareTo(temp) <= 0) {
+            startIndex++;
+        }
+        shiftFrom(startIndex, currentIndex, list);
     }
 
+    // 所有数据往右移一格
     private void shiftFrom(int fromIndex, int endIndex, List<T> list) {
         T temp = list.get(fromIndex);
+        list.set(fromIndex, list.get(endIndex));
         for (int i = fromIndex; i < endIndex; i++) {
             T temp2 = list.get(i + 1);
             list.set(i + 1, temp);
@@ -55,6 +69,7 @@ public class InsertSort<T extends Comparable<T>> implements AbstractSortAlgorith
 
     public static void main(String[] args) {
         InsertSort<Integer> insertSort = new InsertSort<>();
-        insertSort.test(10, 100);
+        insertSort.test(100, 100, true);
+        insertSort.test(10, 100, false);
     }
 }

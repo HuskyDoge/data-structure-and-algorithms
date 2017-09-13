@@ -29,7 +29,7 @@ public class BubbleSort<T extends Comparable<T>> implements AbstractSortAlgorith
 
     public static void main(String[] args) {
         BubbleSort<Integer> bubbleSort = new BubbleSort<>();
-        bubbleSort.test(10, 100);
+        bubbleSort.test(10, 100, false);
     }
 
     @Override

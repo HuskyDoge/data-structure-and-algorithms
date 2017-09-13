@@ -22,7 +22,7 @@ public interface AbstractSortAlgorithm<T extends Comparable<T>> extends SortAlgo
         list.set(j, t);
     }
 
-    default void test(int size, int randomRange) {
+    default void test(int size, int randomRange, boolean improved) {
         Random random = new Random();
         List<Integer> unsortedList = new ArrayList<>();
         for (int i = 0; i < size; i++) {
@@ -30,15 +30,19 @@ public interface AbstractSortAlgorithm<T extends Comparable<T>> extends SortAlgo
         }
         List<Integer> origin = new ArrayList<>(unsortedList);
         SortAlgorithm sortAlgorithm = getAlgorithm();
-        Collection<Integer> sorted = sortAlgorithm.sort(unsortedList);
+        Collection<Integer> sorted = null;
+        if (improved) {
+            sorted = sortAlgorithm.sortWithImprovedMethod(unsortedList);
+        } else {
+            sorted = sortAlgorithm.sort(unsortedList);
+        }
         Integer previous = null;
         for (Integer integer : sorted) {
             if (previous == null) {
                 previous = integer;
             }
             if (previous.compareTo(integer) > 0) {
-                System.err.println("algorithm failure");
-                break;
+                throw new IllegalStateException("algorithm failure");
             }
         }
         sorted.forEach(System.out::println);
