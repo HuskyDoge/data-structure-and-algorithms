@@ -17,9 +17,11 @@ public interface AbstractSortAlgorithm<T extends Comparable<T>> extends SortAlgo
     }
 
     default void swap(int i, int j, List<T> list) {
-        T t = list.get(i);
-        list.set(i, list.get(j));
-        list.set(j, t);
+        if (i != j) {
+            T t = list.get(i);
+            list.set(i, list.get(j));
+            list.set(j, t);
+        }
     }
 
     default void test(int size, int randomRange, boolean improved) {
@@ -45,6 +47,7 @@ public interface AbstractSortAlgorithm<T extends Comparable<T>> extends SortAlgo
                 throw new IllegalStateException("algorithm failure");
             }
         }
-        sorted.forEach(System.out::println);
+        System.out.println("algorithm succeed");
+//        sorted.forEach(System.out::println);
     }
 }

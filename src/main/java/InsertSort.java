@@ -4,7 +4,7 @@ import java.util.List;
 /**
  * 直接插入排序
  * 改进1: 因为前面的是有序的，所以可以用使用二分法插入数据。在数据量小的时候，比较两个数据大小的次数可能比之前还要多，但是一旦数据多了，就
- * 能使次数明显降低
+ * 能使次数明显降低寻路时间
  */
 public class InsertSort<T extends Comparable<T>> implements AbstractSortAlgorithm<T> {
     @Override
@@ -48,11 +48,11 @@ public class InsertSort<T extends Comparable<T>> implements AbstractSortAlgorith
         if (list.get(middleIndex).compareTo(temp) <= 0) {
             startIndex++;
         }
-        shiftFrom(startIndex, currentIndex, list);
+        shiftFromByOne(startIndex, currentIndex, list);
     }
 
     // 所有数据往右移一格
-    private void shiftFrom(int fromIndex, int endIndex, List<T> list) {
+    private void shiftFromByOne(int fromIndex, int endIndex, List<T> list) {
         T temp = list.get(fromIndex);
         list.set(fromIndex, list.get(endIndex));
         for (int i = fromIndex; i < endIndex; i++) {
