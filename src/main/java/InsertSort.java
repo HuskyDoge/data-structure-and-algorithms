@@ -52,7 +52,7 @@ public class InsertSort<T extends Comparable<T>> implements AbstractSortAlgorith
     }
 
     // 所有数据往右移一格
-    private void shiftFromByOne(int fromIndex, int endIndex, List<T> list) {
+    protected void shiftFromByOne(int fromIndex, int endIndex, List<T> list) {
         T temp = list.get(fromIndex);
         list.set(fromIndex, list.get(endIndex));
         for (int i = fromIndex; i < endIndex; i++) {
