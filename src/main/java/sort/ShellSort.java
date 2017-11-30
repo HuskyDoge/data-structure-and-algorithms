@@ -1,7 +1,7 @@
+package sort;
+
 import java.util.Collection;
 import java.util.List;
-
-import static jdk.nashorn.internal.objects.Global.print;
 
 /**
  * Knuth's Formula
