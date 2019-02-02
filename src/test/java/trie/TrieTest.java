@@ -9,7 +9,7 @@ import org.junit.Test;
 public class TrieTest {
     @Test
     public void functionalTest() {
-        ArrayTrie trie = new ArrayTrie();
+        Trie trie = new Trie();
         trie.insert("google");
         trie.insert("kill");
         trie.insert("duck");
@@ -26,7 +26,7 @@ public class TrieTest {
         Assert.assertFalse(trie.startsWith("switch"));
 
 
-        ArrayTrie emptyTrie = new ArrayTrie();
+        Trie emptyTrie = new Trie();
         emptyTrie.insert("");
         Assert.assertFalse(emptyTrie.search("google"));
         Assert.assertFalse(emptyTrie.startsWith("goo"));

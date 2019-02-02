@@ -1,7 +1,7 @@
 package trie;
 
 // use array implementation
-public class ArrayTrie {
+public class Trie {
     private static final int ALPHABET_SIZE = 26;
     private TrieNode root;
 
@@ -14,7 +14,7 @@ public class ArrayTrie {
     }
 
     /** Initialize your data structure here. */
-    public ArrayTrie() {
+    public Trie() {
         this.root = new TrieNode();
     }
 
@@ -26,11 +26,11 @@ public class ArrayTrie {
             TrieNode child = current.children[c - 97];
             if (child == null) {
                 child = new TrieNode();
+                current.children[c - 97] = child;
             }
             if (i == word.length() - 1) {
                 child.isEndOfWord = true;
             }
-            current.children[c - 97] = child;
             current = child;
         }
     }
@@ -72,8 +72,8 @@ public class ArrayTrie {
 }
 
 /**
- * Your ArrayTrie object will be instantiated and called as such:
- * ArrayTrie obj = new ArrayTrie();
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
  * obj.insert(word);
  * boolean param_2 = obj.search(word);
  * boolean param_3 = obj.startsWith(prefix);
