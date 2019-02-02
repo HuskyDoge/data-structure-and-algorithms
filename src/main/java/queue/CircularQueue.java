@@ -1,11 +1,15 @@
-public class MyCircularQueue {
+package queue;
+
+import java.util.Queue;
+
+public class CircularQueue {
     private int head;
     private int tail;
     private int[] list;
     private int k;
 
     /** Initialize your data structure here. Set the size of the queue to be k. */
-    public MyCircularQueue(int k) {
+    public CircularQueue(int k) {
         this.list = new int[k];
         this.k = k;
         this.head = 0;
@@ -63,8 +67,8 @@ public class MyCircularQueue {
 }
 
 /**
- * Your MyCircularQueue object will be instantiated and called as such:
- * MyCircularQueue obj = new MyCircularQueue(k);
+ * Your CircularQueue object will be instantiated and called as such:
+ * CircularQueue obj = new CircularQueue(k);
  * boolean param_1 = obj.enQueue(value);
  * boolean param_2 = obj.deQueue();
  * int param_3 = obj.Front();
