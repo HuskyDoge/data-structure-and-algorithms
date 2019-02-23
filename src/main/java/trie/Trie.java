@@ -1,80 +1,15 @@
 package trie;
 
-// use array implementation
-public class Trie {
-    private static final int ALPHABET_SIZE = 26;
-    private TrieNode root;
-
-    private static class TrieNode {
-        TrieNode[] children = new TrieNode[ALPHABET_SIZE];
-        boolean isEndOfWord;
-        TrieNode() {
-            isEndOfWord = false;
-        }
-    }
-
-    /** Initialize your data structure here. */
-    public Trie() {
-        this.root = new TrieNode();
-    }
-
-    /** Inserts a word into the trie. */
-    public void insert(String word) {
-        TrieNode current = root;
-        for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
-            TrieNode child = current.children[c - 97];
-            if (child == null) {
-                child = new TrieNode();
-                current.children[c - 97] = child;
-            }
-            if (i == word.length() - 1) {
-                child.isEndOfWord = true;
-            }
-            current = child;
-        }
-    }
-
-    /** Returns if the word is in the trie. */
-    public boolean search(String word) {
-        if (word.isEmpty()) return false;
-        TrieNode current = root;
-        for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
-            TrieNode child = current.children[c - 97];
-            if (child != null) {
-                if (i == word.length() - 1) {
-                    return child.isEndOfWord;
-                }
-                current = child;
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /** Returns if there is any word in the trie that starts with the given prefix. */
-    public boolean startsWith(String prefix) {
-        if (prefix.isEmpty()) return false;
-        TrieNode current = root;
-        for (int i = 0; i < prefix.length(); i++) {
-            char c = prefix.charAt(i);
-            TrieNode child = current.children[c - 97];
-            if (child != null) {
-                current = child;
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
-}
+import java.util.List;
 
 /**
- * Your Trie object will be instantiated and called as such:
- * Trie obj = new Trie();
- * obj.insert(word);
- * boolean param_2 = obj.search(word);
- * boolean param_3 = obj.startsWith(prefix);
+ * @author Jialun Li on 2019-02-22
  */
+public interface Trie {
+    void insert(String s);
+    boolean search(String target);
+    boolean hasStartsWith(String prefix);
+    List<String> getStartsWith(String prefix);
+    boolean isEmpty();
+    int size();
+}

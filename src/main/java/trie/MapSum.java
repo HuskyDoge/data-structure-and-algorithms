@@ -22,7 +22,7 @@ import java.util.Queue;
 class MapSum {
     private TrieNode root;
 
-    // Trie using HasMap as implementation
+    // ArrayTrie using HasMap as implementation
     private static class TrieNode {
         Map<Character, TrieNode> children = new HashMap<>();
         int intVal = 0;
@@ -78,7 +78,7 @@ class MapSum {
     }
 
     // recursive solution to traverse the trie
-    //private int sumHelper(TrieNode root) {
+    //private int sumHelper(Node root) {
 //        int sum = root.intVal;
 //        if (root.children.size() == 0) {
 //            return sum;
